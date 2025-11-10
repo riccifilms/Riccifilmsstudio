@@ -481,16 +481,68 @@
 
   <!-- Upcoming Events Sidebar -->
   <div class="events-container">
-    <h3>📅 Upcoming Events</h3>
+    <h3> Upcoming Events</h3>
     <div class="events-list">
       <!-- ✨ CHANGE THESE EVENTS YOURSELF BELOW -->
       <p>London Fashion Week – Dec 2025</p>
       <p>Paris Model Summit – Jan 2026</p>
       <p>Milan Designers Showcase – Feb 2026</p>
-      <p>New Faces Audition – March 2026</p>
-      <p>Global Talent Awards – April 2026</p>
-      <p>New York Runway – May 2026</p>
-      <p>Elite Model Bootcamp – June 2026</p>
+<!-- Bottom Section: Global Presence + Stats + Upcoming Events + Footer -->
+<section style="position:relative; text-align:center; padding:50px 20px; background:#1a1a1a; color:#fff; font-family:Poppins, Arial; overflow:hidden;">
+
+  <!-- Global Presence -->
+  <h2 style="font-size:2rem; margin-bottom:15px; color:#fff;">We are present all over the world</h2>
+  <p style="font-size:1.2rem; margin-bottom:40px; color:#ccc;">
+    Italy, France, Nigeria, Kenya, UK, Indonesia, United States
+  </p>
+
+  <!-- Stats Section -->
+  <div style="display:flex; justify-content:center; gap:40px; flex-wrap:wrap; margin-bottom:40px;">
+    <div>
+      <p class="animated-number neon" data-value="432" style="font-size:2.5rem; font-weight:bold; color:#ffffff;">0</p>
+      <p style="color:#ffffff;">Models Selected</p>
+    </div>
+    <div>
+      <p class="animated-number neon" data-value="1065" style="font-size:2.5rem; font-weight:bold; color:#ffffff;">0</p>
+      <p style="color:#ffffff;">Clients Served</p>
+    </div>
+    <div>
+      <p class="animated-number neon" data-value="265" style="font-size:2.5rem; font-weight:bold; color:#ffffff;">0</p>
+      <p style="color:#ffffff;">Studios Worldwide</p>
+    </div>
+    <div>
+      <p class="animated-number neon" data-value="3744" style="font-size:2.5rem; font-weight:bold; color:#ffffff;">0</p>
+      <p style="color:#ffffff;">Collaborations</p>
+    </div>
+    <div>
+      <p class="animated-number neon" data-value="343" style="font-size:2.5rem; font-weight:bold; color:#ffffff;">0</p>
+      <p style="color:#ffffff;">Awards Won</p>
+    </div>
+    <div>
+      <p class="animated-number neon" data-value="265" style="font-size:2.5rem; font-weight:bold; color:#ffffff;">0</p>
+      <p style="color:#ffffff;">Fashion Week Participation</p>
+    </div>
+  </div>
+
+  <!-- Upcoming Events Sidebar -->
+  <div class="events-container">
+    <h3>📅 Upcoming Events</h3>
+    <div class="events-mask">
+      <div class="events-list">
+        <p>Rome Fashion Week – Dec 2025 (Italy)</p>
+        <p>Paris Haute Couture Showcase – Jan 2026 (France)</p>
+        <p>Lagos International Model Audition – Feb 2026 (Nigeria)</p>
+        <p>Nairobi Creative Film Audition – Mar 2026 (Kenya)</p>
+        <p>London Global Talent Expo – Apr 2026 (UK)</p>
+        <p>Jakarta Runway Fusion – May 2026 (Indonesia)</p>
+        <p>New York City Fashion Photography Summit – Jun 2026 (United States)</p>
+        <p>Milan Elite Designers Meetup – Jul 2026 (Italy)</p>
+        <p>Paris Model Bootcamp – Aug 2026 (France)</p>
+        <p>Kenya Rising Stars Audition – Sep 2026 (Kenya)</p>
+        <p>London Red Carpet Gala – Oct 2026 (UK)</p>
+        <p>Bali Sunset Fashion Shoot – Nov 2026 (Indonesia)</p>
+        <p>Los Angeles Film Casting Week – Dec 2026 (United States)</p>
+      </div>
     </div>
   </div>
 
@@ -532,12 +584,11 @@
     position: absolute;
     right: 20px;
     top: 50px;
-    width: 250px;
-    height: 300px;
-    overflow: hidden;
-    border-left: 2px solid #00ffff;
+    width: 270px;
+    height: 330px;
     padding-left: 10px;
     text-align: left;
+    border-left: 2px solid #00ffff;
     animation: neon-pulse 2s infinite alternate;
   }
 
@@ -546,23 +597,35 @@
     color: #00ffff;
     margin-bottom: 10px;
     text-align: center;
+    text-shadow: 0 0 10px #0ff;
+    position: relative;
+    z-index: 2;
+  }
+
+  .events-mask {
+    position: relative;
+    height: 270px; /* Keeps text below heading */
+    overflow: hidden;
+    mask-image: linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%);
   }
 
   .events-list {
     display: flex;
     flex-direction: column;
-    animation: scroll-up 25s linear infinite;
+    animation: scroll-up 35s linear infinite;
+    padding-top: 20px; /* ensures text starts below heading */
   }
 
   .events-list p {
     margin: 8px 0;
-    color: #fff;
+    color: #00ffff;
     font-size: 0.95rem;
+    text-shadow: 0 0 8px #00ffff, 0 0 15px #00ffff;
   }
 
   @keyframes scroll-up {
-    0% { transform: translateY(100%); }
-    100% { transform: translateY(-100%); }
+    0% { transform: translateY(0%); }
+    100% { transform: translateY(-80%); } /* Stops before covering heading */
   }
 
   /* Responsive for mobile */
@@ -576,8 +639,12 @@
       text-align: center;
     }
 
+    .events-mask {
+      height: 200px;
+    }
+
     .events-list {
-      animation: scroll-up 30s linear infinite;
+      animation: scroll-up 40s linear infinite;
     }
   }
 </style>
@@ -596,7 +663,7 @@
         setTimeout(() => {
           count = 0;
           loop();
-        }, 500);
+        }, 800);
       } else {
         element.innerText = count;
         setTimeout(loop, speed);
@@ -626,6 +693,7 @@
 </footer>
 </body>
 </html>
+
 
 
 
