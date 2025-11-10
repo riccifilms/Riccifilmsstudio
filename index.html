@@ -443,52 +443,7 @@
 
 <!-- Bottom Section: Global Presence + Stats + Footer -->
 <!-- Bottom Section: Global Presence + Stats + Upcoming Events + Footer -->
-<section style="position:relative; text-align:center; padding:50px 20px; background:#1a1a1a; color:#fff; font-family:Poppins, Arial; overflow:hidden;">
-
-  <!-- Global Presence -->
-  <h2 style="font-size:2rem; margin-bottom:15px; color:#fff;">We are present all over the world</h2>
-  <p style="font-size:1.2rem; margin-bottom:40px; color:#ccc;">
-    Italy, France, Nigeria, Kenya, UK, Indonesia, United States
-  </p>
-
-  <!-- Stats Section -->
-  <div style="display:flex; justify-content:center; gap:40px; flex-wrap:wrap; margin-bottom:40px;">
-    <div>
-      <p class="animated-number neon" data-value="432" style="font-size:2.5rem; font-weight:bold; color:#ffffff;">0</p>
-      <p style="color:#ffffff;">Models Selected</p>
-    </div>
-    <div>
-      <p class="animated-number neon" data-value="1065" style="font-size:2.5rem; font-weight:bold; color:#ffffff;">0</p>
-      <p style="color:#ffffff;">Clients Served</p>
-    </div>
-    <div>
-      <p class="animated-number neon" data-value="265" style="font-size:2.5rem; font-weight:bold; color:#ffffff;">0</p>
-      <p style="color:#ffffff;">Studios Worldwide</p>
-    </div>
-    <div>
-      <p class="animated-number neon" data-value="3744" style="font-size:2.5rem; font-weight:bold; color:#ffffff;">0</p>
-      <p style="color:#ffffff;">Collaborations</p>
-    </div>
-    <div>
-      <p class="animated-number neon" data-value="343" style="font-size:2.5rem; font-weight:bold; color:#ffffff;">0</p>
-      <p style="color:#ffffff;">Awards Won</p>
-    </div>
-    <div>
-      <p class="animated-number neon" data-value="265" style="font-size:2.5rem; font-weight:bold; color:#ffffff;">0</p>
-      <p style="color:#ffffff;">Fashion Week Participation</p>
-    </div>
-  </div>
-
-  <!-- Upcoming Events Sidebar -->
-  <div class="events-container">
-    <h3> Upcoming Events</h3>
-    <div class="events-list">
-      <!-- ✨ CHANGE THESE EVENTS YOURSELF BELOW -->
-      <p>London Fashion Week – Dec 2025</p>
-      <p>Paris Model Summit – Jan 2026</p>
-      <p>Milan Designers Showcase – Feb 2026</p>
-<!-- Bottom Section: Global Presence + Stats + Upcoming Events + Footer -->
-<section style="position:relative; text-align:center; padding:50px 20px; background:#1a1a1a; color:#fff; font-family:Poppins, Arial; overflow:hidden;">
+<section style="position:relative; text-align:center; padding:50px 20px; background:#1a1a1a; color:#fff; font-family:Poppins, Arial;">
 
   <!-- Global Presence -->
   <h2 style="font-size:2rem; margin-bottom:15px; color:#fff;">We are present all over the world</h2>
@@ -527,7 +482,7 @@
   <!-- Upcoming Events Sidebar -->
   <div class="events-container">
     <h3>📅 Upcoming Events</h3>
-    <div class="events-mask">
+    <div class="events-scroll-box">
       <div class="events-list">
         <p>Rome Fashion Week – Dec 2025 (Italy)</p>
         <p>Paris Haute Couture Showcase – Jan 2026 (France)</p>
@@ -566,6 +521,116 @@
   }
 
   .animated-number {
+    display: inline-block;
+    animation: blink-glow 1s infinite;
+    transition: transform 0.3s;
+  }
+
+  .animated-number:hover {
+    transform: scale(1.2);
+  }
+
+  .neon {
+    animation: blink-glow 1s infinite, neon-pulse 2s infinite alternate;
+  }
+
+  /* === Upcoming Events Sidebar === */
+  .events-container {
+    position: absolute;
+    right: 30px;
+    top: 60px;
+    width: 270px;
+    background: rgba(0, 0, 0, 0.4);
+    border: 2px solid #00ffff;
+    border-radius: 10px;
+    padding: 10px;
+    text-align: center;
+    animation: neon-pulse 2s infinite alternate;
+  }
+
+  .events-container h3 {
+    font-size: 1.1rem;
+    color: #00ffff;
+    margin-bottom: 10px;
+    text-shadow: 0 0 10px #0ff;
+  }
+
+  .events-scroll-box {
+    height: 250px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .events-list {
+    position: absolute;
+    width: 100%;
+    animation: scroll-up 30s linear infinite;
+  }
+
+  .events-list p {
+    margin: 8px 0;
+    color: #00ffff;
+    font-size: 0.95rem;
+    text-shadow: 0 0 8px #00ffff, 0 0 15px #00ffff;
+  }
+
+  @keyframes scroll-up {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-100%); }
+  }
+
+  /* Responsive for mobile */
+  @media (max-width: 768px) {
+    .events-container {
+      position: static;
+      width: 100%;
+      margin-top: 40px;
+      border: none;
+      background: transparent;
+    }
+
+    .events-scroll-box {
+      height: 200px;
+    }
+  }
+</style>
+
+<!-- Continuous Count-Up Animation -->
+<script>
+  function animateNumberLoop(element, target) {
+    let count = 0;
+    const speed = 10;
+    const increment = Math.ceil(target / 200);
+
+    function loop() {
+      count += increment;
+      if (count >= target) {
+        element.innerText = target;
+        setTimeout(() => {
+          count = 0;
+          loop();
+        }, 800);
+      } else {
+        element.innerText = count;
+        setTimeout(loop, speed);
+      }
+    }
+    loop();
+  }
+
+  function animateStatsLoop() {
+    const numbers = document.querySelectorAll('.animated-number');
+    numbers.forEach(num => {
+      const target = parseInt(num.getAttribute('data-value')) || parseInt(num.innerText);
+      animateNumberLoop(num, target);
+    });
+  }
+
+  window.addEventListener('load', () => {
+    animateStatsLoop();
+  });
+</script>
+
     display: inline-block;
     animation: blink-glow 1s infinite;
     transition: transform 0.3s;
@@ -693,6 +758,7 @@
 </footer>
 </body>
 </html>
+
 
 
 
