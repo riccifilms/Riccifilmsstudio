@@ -502,28 +502,28 @@
   <!-- Stats Section -->
   <div style="display:flex; justify-content:center; gap:40px; flex-wrap:wrap; margin-bottom:40px;">
     <div>
-      <p class="animated-number" data-value="432" style="font-size:2.5rem; font-weight:bold; color:#00aaff;">0</p>
-      <p>Models Selected</p>
+      <p class="animated-number" data-value="432" style="font-size:2.5rem; font-weight:bold; color:#ffffff;">0</p>
+      <p style="color:#ffffff;">Models Selected</p>
     </div>
     <div>
-      <p class="animated-number" data-value="1065" style="font-size:2.5rem; font-weight:bold; color:#00ff99;">0</p>
-      <p>Clients Served</p>
+      <p class="animated-number" data-value="1065" style="font-size:2.5rem; font-weight:bold; color:#ffffff;">0</p>
+      <p style="color:#ffffff;">Clients Served</p>
     </div>
     <div>
-      <p class="animated-number" data-value="265" style="font-size:2.5rem; font-weight:bold; color:#ff9900;">0</p>
-      <p>Studios Worldwide</p>
+      <p class="animated-number" data-value="265" style="font-size:2.5rem; font-weight:bold; color:#ffffff;">0</p>
+      <p style="color:#ffffff;">Studios Worldwide</p>
     </div>
     <div>
-      <p class="animated-number" data-value="3744" style="font-size:2.5rem; font-weight:bold; color:#ff33cc;">0</p>
-      <p>Collaborations</p>
+      <p class="animated-number" data-value="3744" style="font-size:2.5rem; font-weight:bold; color:#ffffff;">0</p>
+      <p style="color:#ffffff;">Collaborations</p>
     </div>
     <div>
-      <p class="animated-number" data-value="343" style="font-size:2.5rem; font-weight:bold; color:#ffff00;">0</p>
-      <p>Awards Won</p>
+      <p class="animated-number" data-value="343" style="font-size:2.5rem; font-weight:bold; color:#ffffff;">0</p>
+      <p style="color:#ffffff;">Awards Won</p>
     </div>
     <div>
-      <p class="animated-number" data-value="265" style="font-size:2.5rem; font-weight:bold; color:#00ffff;">0</p>
-      <p>Fashion Week Participation</p>
+      <p class="animated-number" data-value="265" style="font-size:2.5rem; font-weight:bold; color:#ffffff;">0</p>
+      <p style="color:#ffffff;">Fashion Week Participation</p>
     </div>
   </div>
 
@@ -568,7 +568,7 @@
   // Animate numbers from 0 to target
   function animateNumber(element, target) {
     let count = 0;
-    const increment = Math.ceil(target / 200); // speed
+    const increment = Math.ceil(target / 200);
     const interval = setInterval(() => {
       count += increment;
       if(count >= target) {
@@ -598,7 +598,6 @@
       const visitsElement = document.getElementById('visits');
       animateNumber(visitsElement, currentCount);
 
-      // Set minimum 1023
       if(data.value < 1023){
         await fetch('https://api.countapi.xyz/set/riccifilms_start/visits?value=1023');
       }
@@ -621,6 +620,7 @@
 </footer>
 </body>
 </html>
+
 
 
 
