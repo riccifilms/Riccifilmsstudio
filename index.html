@@ -490,113 +490,44 @@
 <!-- Add this right before </body> -->
 <!-- Page content -->
 
-<!-- Bottom Section: Global Presence + Stats + Visitor Counter + Footer -->
-<section style="text-align:center; padding:50px 20px; background:#1a1a1a; color:#fff; font-family:Poppins, Arial;">
-
-  <!-- Global Presence -->
-  <h2 style="font-size:2rem; margin-bottom:15px; color:#fff;">We are present all over the world</h2>
-  <p style="font-size:1.2rem; margin-bottom:40px; color:#ccc;">
-    Italy, France, Nigeria, Kenya, UK, Indonesia, United States
-  </p>
-
-  <!-- Stats Section -->
-  <div style="display:flex; justify-content:center; gap:40px; flex-wrap:wrap; margin-bottom:40px;">
-    <div>
-      <p class="animated-number" data-value="432" style="font-size:2.5rem; font-weight:bold; color:#ffffff;">0</p>
-      <p style="color:#ffffff;">Models Selected</p>
-    </div>
-    <div>
-      <p class="animated-number" data-value="1065" style="font-size:2.5rem; font-weight:bold; color:#ffffff;">0</p>
-      <p style="color:#ffffff;">Clients Served</p>
-    </div>
-    <div>
-      <p class="animated-number" data-value="265" style="font-size:2.5rem; font-weight:bold; color:#ffffff;">0</p>
-      <p style="color:#ffffff;">Studios Worldwide</p>
-    </div>
-    <div>
-      <p class="animated-number" data-value="3744" style="font-size:2.5rem; font-weight:bold; color:#ffffff;">0</p>
-      <p style="color:#ffffff;">Collaborations</p>
-    </div>
-    <div>
-      <p class="animated-number" data-value="343" style="font-size:2.5rem; font-weight:bold; color:#ffffff;">0</p>
-      <p style="color:#ffffff;">Awards Won</p>
-    </div>
-    <div>
-      <p class="animated-number" data-value="265" style="font-size:2.5rem; font-weight:bold; color:#ffffff;">0</p>
-      <p style="color:#ffffff;">Fashion Week Participation</p>
-    </div>
-  </div>
-
-  <!-- Visitor Counter -->
-  <div style="font-size:1.2rem; color:#fff; margin-bottom:20px;">
-    👁️ This page has been visited 
-    <span id="visits" class="animated-number" style="font-weight:bold; color:#00aaff;">0</span> times.
-  </div>
-
-  <!-- Footer -->
-  <footer style="font-size:0.9rem; color:#b30000; font-weight:bold; margin-top:20px; user-select:none;">
-    &copy; 2025 RicciFilm Studios. All rights reserved.
-  </footer>
-</section>
-
-<!-- Blinking + Glow + Count-Up Animation CSS -->
-<style>
-  @keyframes blink-glow {
-    0%, 49% { 
-      opacity: 1; 
-      text-shadow: 0 0 5px currentColor, 0 0 10px currentColor;
-    }
-    50%, 100% { 
-      opacity: 0.3; 
-      text-shadow: 0 0 2px currentColor, 0 0 5px currentColor;
-    }
-  }
-
-  .animated-number {
-    display: inline-block;
-    animation: blink-glow 1s infinite;
-    transition: transform 0.3s;
-  }
-
-  .animated-number:hover {
-    transform: scale(1.2);
-  }
-</style>
-
-<!-- Visitor Counter + Number Count-Up Script -->
-<script>
-  // Animate numbers from 0 to target
-  function animateNumber(element, target) {
+ <script>
+  // Animate numbers from 0 to target repeatedly
+  function animateNumberLoop(element, target) {
     let count = 0;
+    const speed = 10; // ms per increment
     const increment = Math.ceil(target / 200);
-    const interval = setInterval(() => {
+
+    function loop() {
       count += increment;
       if(count >= target) {
         element.innerText = target;
-        clearInterval(interval);
+        setTimeout(() => {
+          count = 0; // reset
+          loop();
+        }, 500); // pause 0.5s at full value
       } else {
         element.innerText = count;
+        setTimeout(loop, speed);
       }
-    }, 10);
+    }
+    loop();
   }
 
-  // Animate stats numbers
-  function animateStats() {
+  function animateStatsLoop() {
     const numbers = document.querySelectorAll('.animated-number');
     numbers.forEach(num => {
       const target = parseInt(num.getAttribute('data-value')) || parseInt(num.innerText);
-      animateNumber(num, target);
+      animateNumberLoop(num, target);
     });
   }
 
-  // Visitor counter
-  async function updateVisitorCount() {
+  async function updateVisitorCountLoop() {
     try {
       let response = await fetch('https://api.countapi.xyz/update/riccifilms_start/visits?amount=100');
       let data = await response.json();
       let currentCount = data.value < 1023 ? 1023 : data.value;
       const visitsElement = document.getElementById('visits');
-      animateNumber(visitsElement, currentCount);
+      animateNumberLoop(visitsElement, currentCount);
 
       if(data.value < 1023){
         await fetch('https://api.countapi.xyz/set/riccifilms_start/visits?value=1023');
@@ -609,10 +540,11 @@
 
   // On page load
   window.addEventListener('load', () => {
-    animateStats();
-    updateVisitorCount();
+    animateStatsLoop();
+    updateVisitorCountLoop();
   });
 </script>
+
 
 
 
@@ -620,6 +552,7 @@
 </footer>
 </body>
 </html>
+
 
 
 
