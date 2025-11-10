@@ -488,21 +488,28 @@
   setInterval(nextSlide, 7000);
 </script>
 <!-- Add this right before </body> -->
+<!-- Page content -->
 
-<!-- Visitor Counter -->
+<!-- Visitor Counter at the bottom -->
 <div style="text-align:center; margin-top:30px; font-family:Poppins, Arial; color:black;">
   👁️ This page has been visited 
-  <span id="visits" style="font-weight:bold; color:#0078D7;">...</span> times.
+  <span id="visits" style="font-weight:bold; color:#0078D7;">0</span> times.
 </div>
 
 <script>
-  fetch('https://api.countapi.xyz/update/riccifilms.github.io/visits?amount=100')
-    .then(res => res.json())
-    .then(res => {
-      document.getElementById('visits').innerText = res.value;
-    })
-    .catch(err => console.error('Visitor counter error:', err));
+  async function updateVisitorCount() {
+    try {
+      const response = await fetch('https://api.countapi.xyz/update/riccifilms.github.io/visits?amount=100');
+      const data = await response.json();
+      document.getElementById('visits').innerText = data.value;
+    } catch (error) {
+      console.error('Error fetching visitor count:', error);
+      document.getElementById('visits').innerText = 'N/A';
+    }
+  }
+  updateVisitorCount();
 </script>
+</body>
   
 
 <footer style="text-align:center; padding:15px 0; background:#000; color:#b30000; font-size:0.9rem; font-weight:bold; user-select:none;">
@@ -510,6 +517,7 @@
 </footer>
 </body>
 </html>
+
 
 
 
