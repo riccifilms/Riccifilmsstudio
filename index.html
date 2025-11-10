@@ -631,88 +631,7 @@
   });
 </script>
 
-    display: inline-block;
-    animation: blink-glow 1s infinite;
-    transition: transform 0.3s;
-  }
-
-  .animated-number:hover {
-    transform: scale(1.2);
-  }
-
-  .neon {
-    animation: blink-glow 1s infinite, neon-pulse 2s infinite alternate;
-  }
-
-  /* === Upcoming Events Sidebar === */
-  .events-container {
-    position: absolute;
-    right: 20px;
-    top: 50px;
-    width: 270px;
-    height: 330px;
-    padding-left: 10px;
-    text-align: left;
-    border-left: 2px solid #00ffff;
-    animation: neon-pulse 2s infinite alternate;
-  }
-
-  .events-container h3 {
-    font-size: 1.1rem;
-    color: #00ffff;
-    margin-bottom: 10px;
-    text-align: center;
-    text-shadow: 0 0 10px #0ff;
-    position: relative;
-    z-index: 2;
-  }
-
-  .events-mask {
-    position: relative;
-    height: 270px; /* Keeps text below heading */
-    overflow: hidden;
-    mask-image: linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%);
-  }
-
-  .events-list {
-    display: flex;
-    flex-direction: column;
-    animation: scroll-up 35s linear infinite;
-    padding-top: 20px; /* ensures text starts below heading */
-  }
-
-  .events-list p {
-    margin: 8px 0;
-    color: #00ffff;
-    font-size: 0.95rem;
-    text-shadow: 0 0 8px #00ffff, 0 0 15px #00ffff;
-  }
-
-  @keyframes scroll-up {
-    0% { transform: translateY(0%); }
-    100% { transform: translateY(-80%); } /* Stops before covering heading */
-  }
-
-  /* Responsive for mobile */
-  @media (max-width: 768px) {
-    .events-container {
-      position: static;
-      width: 100%;
-      border: none;
-      padding-left: 0;
-      margin-top: 40px;
-      text-align: center;
-    }
-
-    .events-mask {
-      height: 200px;
-    }
-
-    .events-list {
-      animation: scroll-up 40s linear infinite;
-    }
-  }
-</style>
+    
 
 <!-- Continuous Count-Up Animation -->
 <script>
@@ -758,6 +677,7 @@
 </footer>
 </body>
 </html>
+
 
 
 
