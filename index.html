@@ -489,10 +489,25 @@
 </script>
 <!-- Add this right before </body> -->
 
+  <!-- Visitor Counter -->
+<div style="text-align:center; margin-top:30px; font-family:Arial; color:white;">
+  👁️ This page has been visited 
+  <span id="visits" style="font-weight:bold;">...</span> times.
+</div>
+
+<script>
+  fetch('https://api.countapi.xyz/hit/riccifilms.github.io/visits')
+    .then(res => res.json())
+    .then(res => {
+      document.getElementById('visits').innerText = res.value;
+    });
+</script>
+
 <footer style="text-align:center; padding:15px 0; background:#000; color:#b30000; font-size:0.9rem; font-weight:bold; user-select:none;">
   &copy; 2025 RicciFilmStudios. All rights reserved.
 </footer>
 </body>
 </html>
+
 
 
