@@ -441,7 +441,7 @@
   </section>
 </div>
 
-  <!-- Bottom Section: Global Presence + Stats + Visitor Counter + Footer -->
+<!-- Bottom Section: Global Presence + Stats + Footer -->
 <section style="text-align:center; padding:50px 20px; background:#1a1a1a; color:#fff; font-family:Poppins, Arial;">
 
   <!-- Global Presence -->
@@ -476,12 +476,6 @@
       <p class="animated-number neon" data-value="265" style="font-size:2.5rem; font-weight:bold; color:#ffffff;">0</p>
       <p style="color:#ffffff;">Fashion Week Participation</p>
     </div>
-  </div>
-
-  <!-- Visitor Counter -->
-  <div style="font-size:1.2rem; color:#fff; margin-bottom:20px;">
-    👁️ This page has been visited 
-    <span id="visits" class="animated-number neon" style="font-weight:bold; color:#00aaff;">0</span> times.
   </div>
 
   <!-- Footer -->
@@ -522,7 +516,7 @@
   }
 </style>
 
-<!-- Visitor Counter + Number Count-Up Loop Script -->
+<!-- Number Count-Up Loop Script -->
 <script>
   // Animate numbers from 0 to target repeatedly
   function animateNumberLoop(element, target) {
@@ -555,28 +549,9 @@
     });
   }
 
-  // Visitor counter
-  async function updateVisitorCountLoop() {
-    try {
-      let response = await fetch('https://api.countapi.xyz/update/riccifilms_start/visits?amount=100');
-      let data = await response.json();
-      let currentCount = data.value < 1023 ? 1023 : data.value;
-      const visitsElement = document.getElementById('visits');
-      animateNumberLoop(visitsElement, currentCount);
-
-      if(data.value < 1023){
-        await fetch('https://api.countapi.xyz/set/riccifilms_start/visits?value=1023');
-      }
-    } catch(error) {
-      console.error('Visitor counter error:', error);
-      document.getElementById('visits').innerText = '1023';
-    }
-  }
-
   // On page load
   window.addEventListener('load', () => {
     animateStatsLoop();
-    updateVisitorCountLoop();
   });
 </script>
 
@@ -587,6 +562,7 @@
 </footer>
 </body>
 </html>
+
 
 
 
