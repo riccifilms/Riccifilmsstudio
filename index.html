@@ -489,10 +489,10 @@
 </script>
 <!-- Add this right before </body> -->
 
-  <!-- Visitor Counter -->
-<div style="text-align:center; margin-top:30px; font-family:Arial; color:white;">
+<!-- Visitor Counter -->
+<div style="text-align:center; margin-top:30px; font-family:Poppins, Arial; color:black;">
   👁️ This page has been visited 
-  <span id="visits" style="font-weight:bold;">...</span> times.
+  <span id="visits" style="font-weight:bold; color:#0078D7;">...</span> times.
 </div>
 
 <script>
@@ -500,7 +500,8 @@
     .then(res => res.json())
     .then(res => {
       document.getElementById('visits').innerText = res.value;
-    });
+    })
+    .catch(err => console.error('Visitor counter error:', err));
 </script>
   
 
@@ -509,6 +510,7 @@
 </footer>
 </body>
 </html>
+
 
 
 
