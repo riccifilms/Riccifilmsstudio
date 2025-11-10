@@ -496,18 +496,20 @@
 </div>
 
 <script>
-  fetch('https://api.countapi.xyz/hit/riccifilms.github.io/visits')
+  fetch('https://api.countapi.xyz/update/riccifilms.github.io/visits?amount=100')
     .then(res => res.json())
     .then(res => {
       document.getElementById('visits').innerText = res.value;
     });
 </script>
+  
 
 <footer style="text-align:center; padding:15px 0; background:#000; color:#b30000; font-size:0.9rem; font-weight:bold; user-select:none;">
   &copy; 2025 RicciFilmStudios. All rights reserved.
 </footer>
 </body>
 </html>
+
 
 
 
