@@ -442,7 +442,8 @@
 </div>
 
 <!-- Bottom Section: Global Presence + Stats + Footer -->
-<section style="text-align:center; padding:50px 20px; background:#1a1a1a; color:#fff; font-family:Poppins, Arial;">
+<!-- Bottom Section: Global Presence + Stats + Upcoming Events + Footer -->
+<section style="position:relative; text-align:center; padding:50px 20px; background:#1a1a1a; color:#fff; font-family:Poppins, Arial; overflow:hidden;">
 
   <!-- Global Presence -->
   <h2 style="font-size:2rem; margin-bottom:15px; color:#fff;">We are present all over the world</h2>
@@ -478,21 +479,32 @@
     </div>
   </div>
 
+  <!-- Upcoming Events Sidebar -->
+  <div class="events-container">
+    <h3>📅 Upcoming Events</h3>
+    <div class="events-list">
+      <!-- ✨ CHANGE THESE EVENTS YOURSELF BELOW -->
+      <p>London Fashion Week – Dec 2025</p>
+      <p>Paris Model Summit – Jan 2026</p>
+      <p>Milan Designers Showcase – Feb 2026</p>
+      <p>New Faces Audition – March 2026</p>
+      <p>Global Talent Awards – April 2026</p>
+      <p>New York Runway – May 2026</p>
+      <p>Elite Model Bootcamp – June 2026</p>
+    </div>
+  </div>
+
   <!-- Footer -->
   <footer style="font-size:0.9rem; color:#b30000; font-weight:bold; margin-top:20px; user-select:none;">
     &copy; 2025 RicciFilm Studios. All rights reserved.
   </footer>
 </section>
 
-<!-- Blinking + Neon Glow + Count-Up Animation CSS -->
+<!-- CSS -->
 <style>
   @keyframes blink-glow {
-    0%, 49% { 
-      opacity: 1; 
-    }
-    50%, 100% { 
-      opacity: 0.3; 
-    }
+    0%, 49% { opacity: 1; }
+    50%, 100% { opacity: 0.3; }
   }
 
   @keyframes neon-pulse {
@@ -514,24 +526,77 @@
   .neon {
     animation: blink-glow 1s infinite, neon-pulse 2s infinite alternate;
   }
+
+  /* === Upcoming Events Sidebar === */
+  .events-container {
+    position: absolute;
+    right: 20px;
+    top: 50px;
+    width: 250px;
+    height: 300px;
+    overflow: hidden;
+    border-left: 2px solid #00ffff;
+    padding-left: 10px;
+    text-align: left;
+    animation: neon-pulse 2s infinite alternate;
+  }
+
+  .events-container h3 {
+    font-size: 1.1rem;
+    color: #00ffff;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+
+  .events-list {
+    display: flex;
+    flex-direction: column;
+    animation: scroll-up 25s linear infinite;
+  }
+
+  .events-list p {
+    margin: 8px 0;
+    color: #fff;
+    font-size: 0.95rem;
+  }
+
+  @keyframes scroll-up {
+    0% { transform: translateY(100%); }
+    100% { transform: translateY(-100%); }
+  }
+
+  /* Responsive for mobile */
+  @media (max-width: 768px) {
+    .events-container {
+      position: static;
+      width: 100%;
+      border: none;
+      padding-left: 0;
+      margin-top: 40px;
+      text-align: center;
+    }
+
+    .events-list {
+      animation: scroll-up 30s linear infinite;
+    }
+  }
 </style>
 
-<!-- Number Count-Up Loop Script -->
+<!-- Continuous Count-Up Animation -->
 <script>
-  // Animate numbers from 0 to target repeatedly
   function animateNumberLoop(element, target) {
     let count = 0;
-    const speed = 10; // ms per increment
+    const speed = 10;
     const increment = Math.ceil(target / 200);
 
     function loop() {
       count += increment;
-      if(count >= target) {
+      if (count >= target) {
         element.innerText = target;
         setTimeout(() => {
-          count = 0; // reset
+          count = 0;
           loop();
-        }, 500); // pause 0.5s at full value
+        }, 500);
       } else {
         element.innerText = count;
         setTimeout(loop, speed);
@@ -540,7 +605,6 @@
     loop();
   }
 
-  // Animate stats numbers
   function animateStatsLoop() {
     const numbers = document.querySelectorAll('.animated-number');
     numbers.forEach(num => {
@@ -549,7 +613,6 @@
     });
   }
 
-  // On page load
   window.addEventListener('load', () => {
     animateStatsLoop();
   });
@@ -558,10 +621,12 @@
 
 
 
+
   
 </footer>
 </body>
 </html>
+
 
 
 
