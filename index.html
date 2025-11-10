@@ -490,7 +490,7 @@
 <!-- Add this right before </body> -->
 <!-- Page content -->
 
-<!-- Visitor Counter at the bottom -->
+<!-- Visitor Counter -->
 <div style="text-align:center; margin-top:30px; font-family:Poppins, Arial; color:black;">
   👁️ This page has been visited 
   <span id="visits" style="font-weight:bold; color:#0078D7;">1023</span> times.
@@ -503,14 +503,18 @@
 <script>
   async function updateVisitorCount() {
     try {
-      const response = await fetch('https://api.countapi.xyz/update/riccifilms_start/visits?amount=100');
-      const data = await response.json();
+      // Step 1: Try to increment by 100
+      let response = await fetch('https://api.countapi.xyz/update/riccifilms_start/visits?amount=100');
+      let data = await response.json();
 
+      // Step 2: If the key didn’t exist yet, initialize it to 1023
       if (data.value < 1023) {
+        await fetch('https://api.countapi.xyz/set/riccifilms_start/visits?value=1023');
         document.getElementById('visits').innerText = 1023;
       } else {
         document.getElementById('visits').innerText = data.value;
       }
+
     } catch (error) {
       console.error('Error fetching visitor count:', error);
       document.getElementById('visits').innerText = '1023';
@@ -524,6 +528,7 @@
 </footer>
 </body>
 </html>
+
 
 
 
